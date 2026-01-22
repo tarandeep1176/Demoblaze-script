@@ -1,9 +1,9 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from Page_Objects.Home_Page import HomePageObjects
+from Page_Objects.Phone_Page import PhonePageObjects
 import time
 
-class HomePageFunctions(HomePageObjects):
+class PhonePageFunctions(PhonePageObjects):
     
     def __init__(self,driver):
         self.driver = driver

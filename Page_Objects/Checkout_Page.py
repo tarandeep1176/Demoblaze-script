@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-class CartPageObjects:
+class CheckoutPageObjects:
     place_order_btn = (By.CSS_SELECTOR,".btn.btn-success")
     place_order_form = (By.CSS_SELECTOR,"#orderModalLabel")
     name = (By.CSS_SELECTOR,"#name")
@@ -13,3 +13,4 @@ class CartPageObjects:
     order_success_msg = (By.XPATH, "//h2[text()='Thank you for your purchase!']")
     order__details = (By.CSS_SELECTOR, ".lead.text-muted")
     details_box_ok = (By.CSS_SELECTOR,".confirm.btn.btn-lg.btn-primary")
+    order_confirmation_box = (By.CSS_SELECTOR,".sweet-alert.showSweetAlert.visible")
