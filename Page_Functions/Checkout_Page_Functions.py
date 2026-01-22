@@ -33,6 +33,16 @@ class CheckoutPageFunctions(CheckoutPageObjects):
         success_msg = self.wait.until(EC.visibility_of_element_located(self.order_success_msg))
         print("Order placed successfully:", success_msg.text)
 
+    def take_screenshot(self):
+        random_no = random.randint(1, 1000)
+        Screenshot_DIR = "Screenshots"
+        os.makedirs(Screenshot_DIR, exist_ok=True)
+        filePath = f"{Screenshot_DIR}/Order_placed_{random_no}.png"
+        time.sleep(2)
+        order_confirm_box = self.driver.find_element(*self.order_confirmation_box)
+        order_confirm_box.screenshot(filePath)
+        time.sleep(2)
+
     def get_order_details(self):
         details = self.wait.until(EC.visibility_of_element_located(self.order__details))
         print("Details of your order :- ", details.text)

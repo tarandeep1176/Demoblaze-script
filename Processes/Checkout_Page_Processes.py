@@ -8,5 +8,6 @@ class CheckoutPageProcess:
     def run_process(self):
         data = CheckoutPageMother().get()
         self.checkout.place_order(data.CheckoutData)
+        self.checkout.take_screenshot()
         self.checkout.get_order_details()
 
