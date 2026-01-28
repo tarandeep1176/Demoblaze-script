@@ -1,2 +1,4 @@
 .env
 Screenshots
+__pycache__
+allure-results
