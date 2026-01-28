@@ -31,6 +31,9 @@ class SignupPageFunctions(SignupPageObjects):
         self.wait.until(EC.alert_is_present())
         alert = self.driver.switch_to.alert
         print("Alert Text:", alert.text)
-        alert.accept()
-        self.driver.find_element(*self.close_btn).click()
+        if(alert.text == "This user already exist."):
+            alert.accept()
+            self.driver.find_element(*self.close_btn).click()
+        elif(alert.text == "Sign up successful."):
+            alert.accept()
 

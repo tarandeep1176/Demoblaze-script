@@ -14,7 +14,7 @@ from Processes.Checkout_Page_Processes import CheckoutPageProcess
 from Processes.Logout_Page_Processes import LogoutPageProcess
 
 data = ConfigData()
-driver = Import_libraries.initialize_driver()
+driver = Import_libraries.get_driver()
 driver.get(data.BASE_URL)
 
 signup_page_functions = SignupPageFunctions(driver)
@@ -42,3 +42,4 @@ def test_checkout():
 def test_logout():
     logout = LogoutPageProcess(logout_page_functions)
     logout.run_process()
+    driver.close()

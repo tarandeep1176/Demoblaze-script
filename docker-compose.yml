@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  # Selenium Chrome service with VNC for visual debugging
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: chrome
+    shm_size: 2g
+    ports:
+      - "4444:4444"  # Selenium WebDriver port
+      - "7900:7900"  # noVNC port (access at http://localhost:7900/?autoconnect=true&reconnect=true&resize=scale&password=)
+    environment:
+      - SE_VNC_NO_PASSWORD=1  # Disable VNC password
+      - VNC_NO_PASSWORD=1     # Disable VNC password (legacy setting)
+      - START_XVFB=true       # Start X virtual framebuffer
+      - SE_SCREEN_WIDTH=1920  # Screen width
+      - SE_SCREEN_HEIGHT=1080 # Screen height
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - automation-net
+
+
+  # Test runner service
+  selenium-tests:
+    build: .
+    container_name: selenium-tests
+    depends_on:
+      - chrome
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SELENIUM_HEADLESS=0
+      - MOCK_MODE=0
+      - SELENIUM_REMOTE_URL=http://chrome:4444/wd/hub
+      - DISPLAY=:99
+    volumes:
+      - .:/app
+      # - ./Upload_Files:/app/Upload_Files:rw
+    networks:
+      - automation-net
+    command: python -m pytest main.py -v --html=/app/report.html --self-contained-html --capture=tee-sys --alluredir=/app/allure-results
+
+networks:
+  automation-net:
+    external: true
