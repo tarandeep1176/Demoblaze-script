@@ -33,7 +33,6 @@ class CheckoutPageFunctions(CheckoutPageObjects):
         success_msg = self.wait.until(EC.visibility_of_element_located(self.order_success_msg))
         print("Order placed successfully:", success_msg.text)
 
-        
 
     def take_screenshot(self):
         random_no = random.randint(1, 1000)
