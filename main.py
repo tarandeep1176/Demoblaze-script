@@ -16,6 +16,8 @@ from Processes.Logout_Page_Processes import LogoutPageProcess
 data = ConfigData()
 driver = Import_libraries.get_driver()
 driver.get(data.BASE_URL)
+print("BASE_URL:", repr(data.BASE_URL))
+
 
 signup_page_functions = SignupPageFunctions(driver)
 login_page_functions = LoginPageFunctions(driver)

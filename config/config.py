@@ -1,5 +1,4 @@
 import os
-import dotenv
 import allure
 import time
 from Libraries.Libraries import Import_libraries

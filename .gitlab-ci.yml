@@ -14,7 +14,6 @@ e2e-tests:
     SELENIUM_HEADLESS: "1"
   script:
     - apk add --no-cache bash dos2unix
-    - echo "BASE_URL=${BASE_URL}" >> .env.example
     - echo "APP_USERNAME=${APP_USERNAME}" >> .env.example
     - echo "APP_PASSWORD=${APP_PASSWORD}" >> .env.example
     - echo "CREDIT_CARD_NUMBER=${CREDIT_CARD_NUMBER}" >> .env.example
